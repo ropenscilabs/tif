@@ -78,3 +78,77 @@ tif_corpus_validate <- function(corpus, warn = FALSE) {
 
   return(TRUE)
 }
+
+
+#' Validate Document Term Matrix Object
+#'
+#' A valid document term matrix is a sparse matrix with
+#' the row representing documents and columns representing
+#' terms. The row names is a character vector giving the
+#' document ids with no duplicated entries. The column
+#' names is a character vector giving the terms of the
+#' matrix with no duplicated entries. The spare matrix
+#' should inherit from the Matrix class dgCMatrix.
+#'
+#' @param dtm    a document term matrix object to test
+#'               the validity of
+#' @param warn   logical. Should the function produce a
+#'               verbose warning for the condition for which
+#'               the validation fails. Useful for testing.
+#' @return       a logical vector of length one indicating
+#'               whether the input is a valid document term
+#'               matrix
+#'
+#' @details
+#' The tests are run sequentially and the function returns,
+#' with a warning if the warn flag is set, on the first test
+#' that fails. We use this implementation because some tests
+#' may fail entirely or be meaningless if the prior ones are
+#' note passed. For example, if the dtm object is not a matrix
+#' it may not contain row or column names.
+#'
+#' @example inst/examples/tif_dtm_validate.R
+#' @export
+tif_dtm_validate <- function(dtm, warn = FALSE) {
+
+  if (!inherits(dtm, "dgCMatrix")) {
+    if (warn) warning("document term matrix object must inherit",
+                      "the dgCMatrix class")
+    return(FALSE)
+  }
+
+  if (is.null(colnames(dtm))) {
+    if (warn) warning("document term matrix object must have column names")
+    return(FALSE)
+  }
+
+  if (is.null(rownames(dtm))) {
+    if (warn) warning("document term matrix object must have row names")
+    return(FALSE)
+  }
+
+  if (!is.character(rownames(dtm))) {
+    if (warn) warning("document term matrix object must have character",
+                      "row names")
+    return(FALSE)
+  }
+
+  if (!is.character(colnames(dtm))) {
+    if (warn) warning("document term matrix object must have character",
+                      "column names")
+    return(FALSE)
+  }
+
+  if (any(duplicated(rownames(dtm)))) {
+    if (warn) warning("document term matrix object has duplicated row names")
+    return(FALSE)
+  }
+
+  if (any(duplicated(colnames(dtm)))) {
+    if (warn) warning("document term matrix object has duplicated column",
+                      "names")
+    return(FALSE)
+  }
+
+  return(TRUE)
+}
