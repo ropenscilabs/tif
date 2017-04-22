@@ -152,3 +152,80 @@ tif_dtm_validate <- function(dtm, warn = FALSE) {
 
   return(TRUE)
 }
+
+#' Validate Tokens Object
+#'
+#' A valid tokens object is a data frame or an object that
+#  inherits a data frame. It has no row names and has at
+#' least two columns. The first column is called doc_id
+#' and is a character vector with UTF-8 encoding. Document
+#' ids must be unique. The second column is called token
+#' and must also be a character vector in UTF-8 encoding.
+#' Each individual token is represented by a single row in
+#' the data frame. Addition token-level metadata columns
+#' are allowed but not required.
+#'
+#' @param tokens  a tokens object to test for validity
+#' @param warn    logical. Should the function produce a
+#'                verbose warning for the condition for which
+#'                the validation fails. Useful for testing.
+#' @return        a logical vector of length one indicating
+#'                whether the input is a valid tokens object
+#'
+#' @details
+#' The tests are run sequentially and the function returns,
+#' with a warning if the warn flag is set, on the first test
+#' that fails. We use this implementation because some tests
+#' may fail entirely or be meaningless if the prior ones are
+#' note passed. For example, if the tokens object does not
+#' have a variable named "doc_id" it does not make sense to
+#' check whether this column is a character vector.
+#'
+#' @example inst/examples/tif_tokens_validate.R
+#' @export
+tif_tokens_validate <- function(tokens, warn = FALSE) {
+
+  if (!inherits(tokens, "data.frame")) {
+    if (warn) warning("tokens object must inherit the data.frame class")
+    return(FALSE)
+  }
+
+  if (ncol(tokens) <= 1L) {
+    if (warn) warning("tokens object must contain at least two columns")
+    return(FALSE)
+  }
+
+  if (all(names(tokens)[1L:2L] != c("doc_id", "token"))) {
+    if (warn) warning("first two columns of tokens object must be named",
+                      "'doc_id' and 'token'")
+    return(FALSE)
+  }
+
+  if (.row_names_info(tokens, type = 1) > 0) {
+    if (warn) warning("tokens object should not contain row names")
+    return(FALSE)
+  }
+
+  if (!is.character(tokens$doc_id)) {
+    if (warn) warning("doc_id must be a character vector")
+    return(FALSE)
+  }
+
+  if (!is.character(tokens$token)) {
+    if (warn) warning("text must be a character vector")
+    return(FALSE)
+  }
+
+  # if (Encoding(tokens$doc_id) != "UTF-8") {
+  #   if (warn) warning("doc_id column must be UTF-8 encoded")
+  #   return(FALSE)
+  # }
+
+  # if (Encoding(tokens$token) != "UTF-8") {
+  #   if (warn) warning("token column must be UTF-8 encoded")
+  #   return(FALSE)
+  # }
+
+  return(TRUE)
+}
+
