@@ -1,0 +1,17 @@
+Package: tif
+Type: Package
+Title: Text Interchange Format
+Version: 0.1
+Author: rOpenSci Text Workshop
+Maintainer: Taylor B. Arnold <taylor.arnold@acm.org>
+Description: Provides validation functions for common
+    interchange formats for representing text data in R.
+    Includes formats for corpus objects, document term
+    matrices, and tokens. Other annotations can be stored
+    by overloading the tokens structure.
+Imports: Matrix
+License: GPL-2
+Encoding: UTF-8
+URL: https://github.com/ropensci/tif
+BugReports: http://github.com/ropensci/tif/issues
+RoxygenNote: 6.0.1
