@@ -41,7 +41,7 @@ tif_corpus_validate <- function(corpus, warn = FALSE) {
   }
 
   if (!all(names(corpus)[1L:2L] == c("doc_id", "text"))) {
-    if (warn) warning("first two columns of corpus object must be named",
+    if (warn) warning("first two columns of corpus object must be named ",
                       "'doc_id' and 'text'")
     return(FALSE)
   }
