@@ -1,4 +1,5 @@
-devtools::load_all('tif')
+library(testthat)
+library(tif)
 
 context("test validators.R")
 
