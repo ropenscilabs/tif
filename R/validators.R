@@ -79,6 +79,64 @@ tif_is_corpus_df <- function(corpus, warn = FALSE) {
   return(TRUE)
 }
 
+#' Validate Corpus Character Vector Object
+#'
+#' A valid character vector corpus object is an character
+#' vector with UTF-8 encoding. If it has names, this should
+#' be a unique character also in UTF-8 encoding. No other
+#' attributes should be present.
+#'
+#' @param corpus  a corpus object to test for validity
+#' @param warn    logical. Should the function produce a
+#'                verbose warning for the condition for which
+#'                the validation fails. Useful for testing.
+#' @return        a logical vector of length one indicating
+#'                whether the input is a valid corpus
+#'
+#' @details
+#' The tests are run sequentially and the function returns,
+#' with a warning if the warn flag is set, on the first test
+#' that fails. We use this implementation because some tests
+#' may fail entirely or be meaningless if the prior ones are
+#' note passed.
+#'
+#' @example inst/examples/tif_is_corpus_character.R
+#' @export
+tif_is_corpus_character <- function(corpus, warn = FALSE) {
+
+  if (!is.character(corpus)) {
+    if (warn) warning("corpus object must be a character vector")
+    return(FALSE)
+  }
+
+  if (!is.null(names(corpus)) && any(duplicated(names(corpus)))) {
+    if (warn) warning("names of corpus object must not be duplicated")
+    return(FALSE)
+  }
+
+  if (!is.null(attributes(corpus)) && any(names(attributes(corpus)) != "names")) {
+    if (warn) warning("corpus object should have no attributes other than 'names'")
+    return(FALSE)
+  }
+
+  if (!is.null(names(corpus)) && !is.character(names(corpus))) {
+    if (warn) warning("corpus object names should be a character vector")
+    return(FALSE)
+  }
+
+  # if (Encoding(corpus) != "UTF-8") {
+  #   if (warn) warning("corpus must be UTF-8 encoded")
+  #   return(FALSE)
+  # }
+
+  # if (!is.null(names(corpus)) && Encoding(names(corpus)) != "UTF-8") {
+  #   if (warn) warning("corpus names must be UTF-8 encoded")
+  #   return(FALSE)
+  # }
+
+  return(TRUE)
+}
+
 
 #' Validate Document Term Matrix Object
 #'
@@ -229,3 +287,75 @@ tif_is_tokens_df <- function(tokens, warn = FALSE) {
   return(TRUE)
 }
 
+#' Validate Tokens List Object
+#'
+#' A valid corpus tokens object is (possibly named) list of
+#' character vectors. The character vectors, as well as
+#' names, should be in UTF-8 encoding. No other attributes
+#' should be present in either the list or any of its elements.
+#'
+#' @param tokens  a tokens object to test for validity
+#' @param warn    logical. Should the function produce a
+#'                verbose warning for the condition for which
+#'                the validation fails. Useful for testing.
+#' @return        a logical vector of length one indicating
+#'                whether the input is a valid tokens
+#'
+#' @details
+#' The tests are run sequentially and the function returns,
+#' with a warning if the warn flag is set, on the first test
+#' that fails. We use this implementation because some tests
+#' may fail entirely or be meaningless if the prior ones are
+#' note passed.
+#'
+#' @example inst/examples/tif_is_tokens_list.R
+#' @export
+tif_is_tokens_list <- function(tokens, warn = FALSE) {
+
+  if (!is.list(tokens)) {
+    if (warn) warning("tokens object must be a list")
+    return(FALSE)
+  }
+
+  if (!is.null(names(tokens)) && any(duplicated(names(tokens)))) {
+    if (warn) warning("names of tokens object must not be duplicated")
+    return(FALSE)
+  }
+
+  if (!is.null(attributes(tokens)) && any(names(attributes(tokens)) != "names")) {
+    if (warn) warning("tokens object should have no attributes other than 'names'")
+    return(FALSE)
+  }
+
+  if (!is.null(names(tokens)) && !is.character(names(tokens))) {
+    if (warn) warning("tokens object names should be a character vector")
+    return(FALSE)
+  }
+
+  if (any(sapply(tokens, is.null))) {
+    if (warn) warning("no elements of tokens should be 'NULL'")
+    return(FALSE)
+  }
+
+  if (!all(sapply(tokens, is.character))) {
+    if (warn) warning("elements of tokens should all be a character vectors")
+    return(FALSE)
+  }
+
+  if (!all(sapply(lapply(tokens, attributes), is.null))) {
+    if (warn) warning("elements of tokens should have no additional attributes")
+    return(FALSE)
+  }
+
+  # if (!all(sapply(tokens, Encoding) == "UTF-8")) {
+  #   if (warn) warning("elements of tokens must be UTF-8 encoded")
+  #   return(FALSE)
+  # }
+
+  # if (!is.null(names(tokens)) && Encoding(names(tokens)) != "UTF-8") {
+  #   if (warn) warning("tokens names must be UTF-8 encoded")
+  #   return(FALSE)
+  # }
+
+  return(TRUE)
+}

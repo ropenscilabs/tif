@@ -1,7 +1,7 @@
 Package: tif
 Type: Package
 Title: Text Interchange Format
-Version: 0.1
+Version: 0.2
 Author: rOpenSci Text Workshop
 Maintainer: Taylor B. Arnold <taylor.arnold@acm.org>
 Description: Provides validation functions for common
