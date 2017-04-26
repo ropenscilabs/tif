@@ -7,9 +7,9 @@ tokens <- data.frame(doc_id = c("doc1", "doc1", "doc1", "doc1",
                                "to", "burn", "all", "this", "happened",
                                "more", "or", "less"))
 
-tif_tokens_validate(tokens)
+tif_is_tokens_df(tokens)
 
 tokens$pos <- "NOUN"
 tokens$NER <- ""
 tokens$sentiment <- runif(16L)
-tif_tokens_validate(tokens)
+tif_is_tokens_df(tokens)

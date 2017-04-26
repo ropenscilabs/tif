@@ -26,7 +26,7 @@
 #' have a variable named "text" it does not make sense to
 #' check whether this column is a character vector.
 #'
-#' @example inst/examples/tif_corpus_validate.R
+#' @example inst/examples/tif_is_corpus_df.R
 #' @export
 tif_is_corpus_df <- function(corpus, warn = FALSE) {
 
@@ -107,7 +107,7 @@ tif_is_corpus_df <- function(corpus, warn = FALSE) {
 #' note passed. For example, if the dtm object is not a matrix
 #' it may not contain row or column names.
 #'
-#' @example inst/examples/tif_dtm_validate.R
+#' @example inst/examples/tif_is_dtm.R
 #' @export
 tif_is_dtm <- function(dtm, warn = FALSE) {
 
@@ -153,14 +153,14 @@ tif_is_dtm <- function(dtm, warn = FALSE) {
   return(TRUE)
 }
 
-#' Validate Tokens Object
+#' Validate Tokens Data Frame Object
 #'
-#' A valid tokens object is a data frame or an object that
-#  inherits a data frame. It has no row names and has at
-#' least two columns. The first column is called doc_id
-#' and is a character vector with UTF-8 encoding. Document
-#' ids must be unique. The second column is called token
-#' and must also be a character vector in UTF-8 encoding.
+#' A valid tokens data frame object is a data frame or an
+#' object that inherits a data frame. It has no row names
+#' and has at least two columns. The first column is called
+#' doc_id and is a character vector with UTF-8 encoding.
+#' Document ids must be unique. The second column is called
+#' token and must also be a character vector in UTF-8 encoding.
 #' Each individual token is represented by a single row in
 #' the data frame. Addition token-level metadata columns
 #' are allowed but not required.
@@ -181,9 +181,9 @@ tif_is_dtm <- function(dtm, warn = FALSE) {
 #' have a variable named "doc_id" it does not make sense to
 #' check whether this column is a character vector.
 #'
-#' @example inst/examples/tif_tokens_validate.R
+#' @example inst/examples/tif_is_tokens_df.R
 #' @export
-tif_tokens_validate <- function(tokens, warn = FALSE) {
+tif_is_tokens_df <- function(tokens, warn = FALSE) {
 
   if (!inherits(tokens, "data.frame")) {
     if (warn) warning("tokens object must inherit the data.frame class")
