@@ -4,7 +4,7 @@ corpus <- data.frame(doc_id = c("doc1", "doc2", "doc3"),
                       "All this happened, more or less."),
                      stringsAsFactors = FALSE)
 
-tif_corpus_validate(corpus)
+tif_is_corpus_df(corpus)
 
 corpus$author <- c("Camus", "Bradbury", "Vonnegut")
-tif_corpus_validate(corpus)
+tif_is_corpus_df(corpus)

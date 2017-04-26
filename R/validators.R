@@ -1,6 +1,6 @@
-#' Validate Corpus Object
+#' Validate Corpus Data Frame Object
 #'
-#' A valid corpus object is a data frame or object that
+#' A valid data frame corpus object is an object that
 #  inherits a data frame. It has no row names and has at
 #' least two columns. The first column is called doc_id
 #' and is a character vector with UTF-8 encoding. Document
@@ -28,7 +28,7 @@
 #'
 #' @example inst/examples/tif_corpus_validate.R
 #' @export
-tif_corpus_validate <- function(corpus, warn = FALSE) {
+tif_is_corpus_df <- function(corpus, warn = FALSE) {
 
   if (!inherits(corpus, "data.frame")) {
     if (warn) warning("corpus object must inherit the data.frame class")

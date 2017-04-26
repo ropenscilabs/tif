@@ -3,3 +3,4 @@
 export(tif_corpus_validate)
 export(tif_dtm_validate)
 export(tif_tokens_validate)
+import(Matrix)
