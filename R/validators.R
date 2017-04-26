@@ -109,7 +109,7 @@ tif_is_corpus_df <- function(corpus, warn = FALSE) {
 #'
 #' @example inst/examples/tif_dtm_validate.R
 #' @export
-tif_dtm_validate <- function(dtm, warn = FALSE) {
+tif_is_dtm <- function(dtm, warn = FALSE) {
 
   if (!inherits(dtm, "dgCMatrix")) {
     if (warn) warning("document term matrix object must inherit",
