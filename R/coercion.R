@@ -66,7 +66,7 @@ tif_as_tokens_df <- function(tokens) {
     }
     doc_id <- mapply(function(u, v) rep(u, length(v)), doc_id, tokens)
     out <- data.frame(doc_id = unlist(doc_id, use.names = FALSE),
-                      text = unlist(tokens, use.names = FALSE),
+                      tokens = unlist(tokens, use.names = FALSE),
                       stringsAsFactors = FALSE)
   } else {
     out <- tokens
