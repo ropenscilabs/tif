@@ -41,7 +41,7 @@ test_that("tif_is_corpus_df", {
 		"corpus object must contain at least two columns"
 	)
 
-	# A corpus with one incorrecly named column
+	# A corpus with one incorrectly named column
 	tc <- data.frame(foo='1', text='foobar', stringsAsFactors=F)
 	expect_false(tif_is_corpus_df(tc))
 	expect_warning(
@@ -57,27 +57,6 @@ test_that("tif_is_corpus_df", {
 	)
 	# A corpus with both columns incorrectly named
 	tc <- data.frame(foo='1', bar='foobar', stringsAsFactors=F)
-	expect_false(tif_is_corpus_df(tc))
-	expect_warning(
-		tif_is_corpus_df(tc, warn=T),
-		"first two columns of corpus object must be named 'doc_id' and 'text'"
-	)
-
-
-	# Corpora with correctly named columns, but in the wrong order
-	tc <- data.frame(text='foobar', doc_id='1', stringsAsFactors=F)
-	expect_false(tif_is_corpus_df(tc))
-	expect_warning(
-		tif_is_corpus_df(tc, warn=T),
-		"first two columns of corpus object must be named 'doc_id' and 'text'"
-	)
-	tc <- data.frame(baz='baz', doc_id='1', text='foobar', stringsAsFactors=F)
-	expect_false(tif_is_corpus_df(tc))
-	expect_warning(
-		tif_is_corpus_df(tc, warn=T),
-		"first two columns of corpus object must be named 'doc_id' and 'text'"
-	)
-	tc <- data.frame(doc_id='1', baz='baz', text='foobar', stringsAsFactors=F)
 	expect_false(tif_is_corpus_df(tc))
 	expect_warning(
 		tif_is_corpus_df(tc, warn=T),

@@ -215,10 +215,10 @@ tif_is_dtm <- function(dtm, warn = FALSE) {
 #'
 #' A valid tokens data frame object is a data frame or an
 #' object that inherits a data frame. It has no row names
-#' and has at least two columns. The first column is called
-#' doc_id and is a character vector with UTF-8 encoding.
-#' Document ids must be unique. The second column is called
-#' token and must also be a character vector in UTF-8 encoding.
+#' and has at least two columns. It must a contain column called
+#' doc_id that is a character vector with UTF-8 encoding.
+#' Document ids must be unique. It must also contain a column called
+#' token that must also be a character vector in UTF-8 encoding.
 #' Each individual token is represented by a single row in
 #' the data frame. Addition token-level metadata columns
 #' are allowed but not required.
@@ -253,8 +253,9 @@ tif_is_tokens_df <- function(tokens, warn = FALSE) {
     return(FALSE)
   }
 
-  if (all(names(tokens)[1L:2L] != c("doc_id", "token"))) {
-    if (warn) warning("first two columns of tokens object must be named",
+
+  if (!all(c("doc_id", "token") %in% names(tokens))) {
+    if (warn) warning("data frame must contain columns named",
                       "'doc_id' and 'token'")
     return(FALSE)
   }

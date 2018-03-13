@@ -31,10 +31,10 @@ matrix with no duplicated entries. The sparse matrix
 should inherit from the Matrix class dgCMatrix.
 
 **tokens** (data frame) - A valid data frame tokens
-object is a data frame with at least two columns. The
-first column is called doc_id and is a character vector
+object is a data frame with at least two columns. There must be
+a column called doc_id that is a character vector
 with UTF-8 encoding. Document ids must be unique.
-The second column is called token and must also be a
+There must also be a column called token that must also be a
 character vector in UTF-8 encoding.
 Each individual token is represented by a single row in
 the data frame. Addition token-level metadata columns
