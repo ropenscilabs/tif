@@ -12,10 +12,6 @@ both and return or coerce to at least one of these.
 
 ## Installation
 
-
-
-## Installation
-
 You can install the development version using devtools:
 
 ```{r}
