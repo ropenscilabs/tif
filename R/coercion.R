@@ -26,8 +26,8 @@ NULL
 tif_as_corpus_character <- function(corpus) {
   if (!is.character(corpus)) {
     # Need to convert from data frame
-    out <- as.character(corpus[[2]])
-    names(out) <- corpus[[1]]
+    out <- as.character(corpus$text)
+    names(out) <- corpus$doc_id
   } else {
     out <- corpus
   }
@@ -80,7 +80,7 @@ tif_as_tokens_df <- function(tokens) {
 tif_as_tokens_list <- function(tokens) {
   if (inherits(tokens, "data.frame")) {
     # Need to convert from data frame to list
-    out <- split(tokens[[2]], tokens[[1]])
+    out <- split(tokens$token, tokens$doc_id)
   } else {
     out <- tokens
   }

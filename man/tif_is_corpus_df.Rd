@@ -19,10 +19,10 @@ a logical vector of length one indicating
 }
 \description{
 A valid data frame corpus object is an object that
-least two columns. The first column is called doc_id
-and is a character vector with UTF-8 encoding. Document
-ids must be unique. The second column is called text and
-must also be a character vector in UTF-8 encoding. Each
+least two columns. One column must be called doc_id
+and be a character vector with UTF-8 encoding. Document
+ids must be unique. There must also be a column called text
+and must also be a character vector in UTF-8 encoding. Each
 individual document is represented by a single row in
 the data frame. Addition document-level metadata columns
 and corpus level attributes are allowed but not required.

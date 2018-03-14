@@ -2,10 +2,10 @@
 #'
 #' A valid data frame corpus object is an object that
 #  inherits a data frame. It has no row names and has at
-#' least two columns. The first column is called doc_id
-#' and is a character vector with UTF-8 encoding. Document
-#' ids must be unique. The second column is called text and
-#' must also be a character vector in UTF-8 encoding. Each
+#' least two columns. One column must be called doc_id
+#' and be a character vector with UTF-8 encoding. Document
+#' ids must be unique. There must also be a column called text
+#' and must also be a character vector in UTF-8 encoding. Each
 #' individual document is represented by a single row in
 #' the data frame. Addition document-level metadata columns
 #' and corpus level attributes are allowed but not required.
@@ -40,8 +40,8 @@ tif_is_corpus_df <- function(corpus, warn = FALSE) {
     return(FALSE)
   }
 
-  if (!all(names(corpus)[1L:2L] == c("doc_id", "text"))) {
-    if (warn) warning("first two columns of corpus object must be named ",
+  if (!all(c("doc_id", "text") %in% names(corpus))) {
+    if (warn) warning("corpus object must contain columns named ",
                       "'doc_id' and 'text'")
     return(FALSE)
   }
