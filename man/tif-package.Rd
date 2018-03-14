@@ -26,3 +26,15 @@ Useful links:
 }
 
 }
+\author{
+\strong{Maintainer}: Taylor Arnold \email{taylor.arnold@acm.org}
+
+Authors:
+\itemize{
+  \item Ken Benoit \email{k.r.benoit@lse.ac.uk}
+  \item Lincoln Mullen \email{lmullen@gmu.edu }
+  \item Adam Obeng \email{contact@adamobeng.com}
+  \item rOpenSci Text Workshop Participants (2017)
+}
+
+}

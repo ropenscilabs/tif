@@ -41,7 +41,7 @@ tif_as_corpus_df <- function(corpus) {
   if (!inherits(corpus, "data.frame")) {
     # Need to convert from character
     if (is.null(names(corpus))) {
-      doc_id <- sprintf("doc%d", 1:length(corpus))
+      doc_id <- sprintf("doc%d", seq_along(corpus))
     } else {
       doc_id <- names(corpus)
     }
@@ -60,7 +60,7 @@ tif_as_tokens_df <- function(tokens) {
   if (!inherits(tokens, "data.frame")) {
     # Need to convert from list to data frame
     if (is.null(names(tokens))) {
-      doc_id <- sprintf("doc%d", 1:length(tokens))
+      doc_id <- sprintf("doc%d", seq_along(tokens))
     } else {
       doc_id <- names(tokens)
     }

@@ -1,3 +1,9 @@
+# tif 0.3.0
+
+* Further discussion has lead us to simplify the corpus and token data frame
+formats. The doc_id, text, and token columns can be in any position within the
+data frame.
+
 # tif 0.2.0
 
 * After a round of input for the initial version of the specification,
@@ -30,10 +36,8 @@ a list-based tokens object.
 
 * The old validate functions have been renamed `tif_is_corpus_df`,
 `tif_is_dtm` and `tif_is_tokens_df`. This is more in line with base-R
-functions and seperates the "df" version of the corpus and tokens from
+functions and separates the "df" version of the corpus and tokens from
 the alternative new forms.
-
-
 
 # tif 0.1.0
 

@@ -1,4 +1,64 @@
-### Text Interchange Formats
+## tif: Text Interchange Formats
+
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/statsmaths/tif?branch=master&svg=true)](https://ci.appveyor.com/project/statsmaths/cleanNLP) [![Travis-CI Build Status](https://travis-ci.org/statsmaths/cleanNLP.svg?branch=master)](https://travis-ci.org/ropensci/tif)
+
+This package describes and validates formats for storing
+common object arising in text analysis as native R objects.
+Representations of a text corpus, document term matrix, and
+tokenized text are included. The tokenized text format is
+extensible to include other annotations. There are two versions
+of the corpus and tokens objects; packages should accept
+both and return or coerce to at least one of these.
+
+## Installation
+
+
+
+## Installation
+
+You can install the development version using devtools:
+
+```{r}
+devtools::install_github("ropensci/tif")
+```
+
+## Usage
+
+The package can be used to check that a particular object is in a valid 
+format. For example, here we see that the object `corpus` is a valid corpus
+data frame:
+
+```{r}
+library(tif)
+corpus <- data.frame(doc_id = c("doc1", "doc2", "doc3"),
+                     text = c("Aujourd'hui, maman est morte.",
+                      "It was a pleasure to burn.",
+                      "All this happened, more or less."),
+                     stringsAsFactors = FALSE)
+
+tif_is_corpus_df(corpus)
+```
+```
+TRUE
+```
+
+The package also has functions to convert between the list and data frame
+formats for corpus and token object. For example:
+
+```{r}
+tif_as_corpus_character(corpus)
+```
+```
+                              doc1                               doc2 
+   "Aujourd'hui, maman est morte."       "It was a pleasure to burn." 
+                              doc3 
+"All this happened, more or less." 
+```
+
+Note that extra meta data columns will be lost in the conversion from a data
+frame to a named character vector.
+
+## Details
 
 This package describes and validates formats for storing
 common object arising in text analysis as native R objects.

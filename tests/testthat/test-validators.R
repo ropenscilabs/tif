@@ -93,7 +93,8 @@ test_that("tif_is_corpus_df", {
 	)
 
 	# A corpus with duplicated doc_id s
-	tc <- data.frame(doc_id=c('1', '2', '1'), text=rep('foobar', 3), stringsAsFactors=F)
+	tc <- data.frame(doc_id=c('1', '2', '1'), text=rep('foobar', 3),
+									 stringsAsFactors=F)
 	expect_false(tif_is_corpus_df(tc))
 	expect_warning(
 		tif_is_corpus_df(tc, warn=T),

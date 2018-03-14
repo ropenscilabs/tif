@@ -114,8 +114,9 @@ tif_is_corpus_character <- function(corpus, warn = FALSE) {
     return(FALSE)
   }
 
-  if (!is.null(attributes(corpus)) && any(names(attributes(corpus)) != "names")) {
-    if (warn) warning("corpus object should have no attributes other than 'names'")
+  if (!is.null(attributes(corpus)) &&
+      any(names(attributes(corpus)) != "names")) {
+    if (warn) warning("corpus object should only have 'names' attribute")
     return(FALSE)
   }
 
@@ -166,6 +167,7 @@ tif_is_corpus_character <- function(corpus, warn = FALSE) {
 #' it may not contain row or column names.
 #'
 #' @example inst/examples/tif_is_dtm.R
+#' @importFrom Matrix Matrix
 #' @export
 tif_is_dtm <- function(dtm, warn = FALSE) {
 
@@ -323,8 +325,9 @@ tif_is_tokens_list <- function(tokens, warn = FALSE) {
     return(FALSE)
   }
 
-  if (!is.null(attributes(tokens)) && any(names(attributes(tokens)) != "names")) {
-    if (warn) warning("tokens object should have no attributes other than 'names'")
+  if (!is.null(attributes(tokens)) &&
+      any(names(attributes(tokens)) != "names")) {
+    if (warn) warning("tokens object should only have 'names' attribute")
     return(FALSE)
   }
 
@@ -333,18 +336,20 @@ tif_is_tokens_list <- function(tokens, warn = FALSE) {
     return(FALSE)
   }
 
-  if (any(sapply(tokens, is.null))) {
+  if (any(unlist(lapply(tokens, is.null)))) {
     if (warn) warning("no elements of tokens should be 'NULL'")
     return(FALSE)
   }
 
-  if (!all(sapply(tokens, is.character))) {
+  if (!all(unlist(lapply(tokens, is.character)))) {
     if (warn) warning("elements of tokens should all be a character vectors")
     return(FALSE)
   }
 
-  if (!all(sapply(lapply(tokens, attributes), is.null))) {
-    if (warn) warning("elements of tokens should have no additional attributes")
+  if (!all(unlist(lapply(lapply(tokens, attributes), is.null)))) {
+    if (warn) {
+      warning("elements of tokens should have no additional attributes")
+    }
     return(FALSE)
   }
 

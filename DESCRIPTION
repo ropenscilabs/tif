@@ -1,8 +1,17 @@
 Package: tif
 Type: Package
 Title: Text Interchange Format
-Version: 0.2
-Author: rOpenSci Text Workshop
+Version: 0.3
+Authors@R: c(person("Taylor", "Arnold", role = c("aut", "cre"),
+                     email = "taylor.arnold@acm.org"),
+              person("Ken", "Benoit", role = "aut",
+                     email = "k.r.benoit@lse.ac.uk"),
+              person("Lincoln", "Mullen", role = "aut",
+                     email = "lmullen@gmu.edu "),
+              person("Adam", "Obeng", role = "aut",
+                     email = "contact@adamobeng.com"),
+              person("rOpenSci Text Workshop Participants (2017)",
+                     role = "aut"))
 Maintainer: Taylor B. Arnold <taylor.arnold@acm.org>
 Description: Provides validation functions for common
     interchange formats for representing text data in R.

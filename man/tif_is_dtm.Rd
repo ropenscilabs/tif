@@ -37,6 +37,7 @@ note passed. For example, if the dtm object is not a matrix
 it may not contain row or column names.
 }
 \examples{
+#' @importFrom Matrix Matrix
 dtm <- Matrix::Matrix(0, ncol = 26, nrow = 5, sparse = TRUE)
 colnames(dtm) <- LETTERS
 rownames(dtm) <- sprintf("doc\%d", 1:5)
