@@ -61,8 +61,8 @@ common object arising in text analysis as native R objects.
 Representations of a text corpus, document term matrix, and
 tokenized text are included. The tokenized text format is
 extensible to include other annotations. There are two versions
-of the corpus and tokens objects; packages should accept
-both and return or coerce to at least one of these.
+of the corpus and tokens objects; packages should accept and return
+at least one of these.
 
 **corpus** (data frame) - A valid corpus data frame object
 is a data frame with at least two columns. The first column
