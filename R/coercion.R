@@ -1,4 +1,4 @@
-#' Coerce Between Tif Object Specifications
+#' Coerce Between tif Object Specifications
 #'
 #' These functions convert between the various valid
 #' formats for corpus and tokens objects. By using these
@@ -21,15 +21,24 @@
 #' @name tif_as
 NULL
 
-#' @rdname tif_as
 #' @export
+#' @rdname tif_as
 tif_as_corpus_character <- function(corpus) {
-  if (!is.character(corpus)) {
-    # Need to convert from data frame
-    out <- as.character(corpus$text)
-    names(out) <- corpus$doc_id
+  UseMethod("tif_as_corpus_character")
+}
+
+#' @rdname tif_as
+#' @export
+tif_as_corpus_character.default <- function(corpus) {
+
+  nd <- length(dim(corpus))
+  if (nd <= 1L) {
+    out <- as.character(corpus)
+  } else if (nd == 2L) {
+    out <- as.data.frame(corpus)
   } else {
-    out <- corpus
+    stop(sprintf("Cannot convert object of class %s to tif corpus",
+                 class(corpus)))
   }
 
   return(out)
@@ -37,53 +46,155 @@ tif_as_corpus_character <- function(corpus) {
 
 #' @rdname tif_as
 #' @export
+tif_as_corpus_character.character <- function(corpus) {
+  return(corpus)
+}
+
+
+#' @rdname tif_as
+#' @export
+tif_as_corpus_character.data.frame <- function(corpus) {
+
+  out <- as.character(corpus$text)
+  names(out) <- corpus$doc_id
+
+  return(out)
+}
+
+#' @export
+#' @rdname tif_as
 tif_as_corpus_df <- function(corpus) {
-  if (!inherits(corpus, "data.frame")) {
-    # Need to convert from character
-    if (is.null(names(corpus))) {
-      doc_id <- sprintf("doc%d", seq_along(corpus))
-    } else {
-      doc_id <- names(corpus)
-    }
-    out <- data.frame(doc_id = doc_id, text = as.character(corpus),
-                      stringsAsFactors = FALSE)
-  } else {
-    out <- corpus
-  }
-
-  return(out)
+  UseMethod("tif_as_corpus_df")
 }
 
 #' @rdname tif_as
 #' @export
-tif_as_tokens_df <- function(tokens) {
-  if (!inherits(tokens, "data.frame")) {
-    # Need to convert from list to data frame
-    if (is.null(names(tokens))) {
-      doc_id <- sprintf("doc%d", seq_along(tokens))
-    } else {
-      doc_id <- names(tokens)
-    }
-    doc_id <- mapply(function(u, v) rep(u, length(v)), doc_id, tokens)
-    out <- data.frame(doc_id = unlist(doc_id, use.names = FALSE),
-                      token = unlist(tokens, use.names = FALSE),
-                      stringsAsFactors = FALSE)
+tif_as_corpus_df.default <- function(corpus) {
+
+  nd <- length(dim(corpus))
+  if (nd <= 1L) {
+    out <- as.character(corpus)
+    tif_as_corpus_df(out)
+  } else if (nd == 2L) {
+    out <- as.data.frame(corpus)
   } else {
-    out <- tokens
+    stop(sprintf("Cannot convert object of class %s to tif corpus",
+                 class(corpus)))
   }
 
   return(out)
+
 }
 
 #' @rdname tif_as
 #' @export
+tif_as_corpus_df.character <- function(corpus) {
+
+  # Need to convert from character
+  if (is.null(names(corpus))) {
+    doc_id <- sprintf("doc%d", seq_along(corpus))
+  } else {
+    doc_id <- names(corpus)
+  }
+  out <- data.frame(doc_id = doc_id, text = as.character(corpus),
+                    stringsAsFactors = FALSE)
+
+  return(out)
+
+}
+
+#' @rdname tif_as
+#' @export
+tif_as_corpus_df.data.frame <- function(corpus) {
+
+  return(corpus)
+
+}
+
+#' @export
+#' @rdname tif_as
+tif_as_tokens_df <- function(corpus) {
+  UseMethod("tif_as_tokens_df")
+}
+
+#' @rdname tif_as
+#' @export
+tif_as_tokens_df.default <- function(tokens) {
+
+  nd <- length(dim(tokens))
+  if (nd == 2L) {
+    out <- as.data.frame(tokens)
+    tif_as_tokens_df(out)
+  } else {
+    stop("Cannot convert object of class ", class(tokens),
+         " to tif tokens")
+  }
+
+  return(out)
+
+}
+
+#' @rdname tif_as
+#' @export
+tif_as_tokens_df.list <- function(tokens) {
+
+  if (is.null(names(tokens))) {
+    doc_id <- sprintf("doc%d", seq_along(tokens))
+  } else {
+    doc_id <- names(tokens)
+  }
+  doc_id <- rep(doc_id, lengths(tokens))
+  out <- data.frame(doc_id = unlist(doc_id, use.names = FALSE),
+                    token = unlist(tokens, use.names = FALSE),
+                    stringsAsFactors = FALSE)
+
+  return(out)
+}
+
+
+#' @rdname tif_as
+#' @export
+tif_as_tokens_df.data.frame <- function(tokens) {
+  return(tokens)
+}
+
+
+#' @export
+#' @rdname tif_as
 tif_as_tokens_list <- function(tokens) {
-  if (inherits(tokens, "data.frame")) {
-    # Need to convert from data frame to list
-    out <- split(tokens$token, tokens$doc_id)
+  UseMethod("tif_as_tokens_list")
+}
+
+#' @rdname tif_as
+#' @export
+tif_as_tokens_list.default <- function(tokens) {
+
+  nd <- length(dim(tokens))
+  if (nd == 2L) {
+    out <- as.data.frame(tokens)
   } else {
-    out <- tokens
+    stop("Cannot convert object of class ", class(tokens),
+         " to tif tokens"))
   }
 
   return(out)
+
 }
+
+#' @rdname tif_as
+#' @export
+tif_as_tokens_list.list <- function(tokens) {
+  return(tokens)
+}
+
+
+#' @rdname tif_as
+#' @export
+tif_as_tokens_list.data.frame <- function(tokens) {
+  out <- split(tokens$token, tokens$doc_id)
+  return(out)
+}
+
+
+
+
