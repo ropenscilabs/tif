@@ -174,7 +174,7 @@ tif_as_tokens_list.default <- function(tokens) {
     out <- as.data.frame(tokens)
   } else {
     stop("Cannot convert object of class ", class(tokens),
-         " to tif tokens"))
+         " to tif tokens")
   }
 
   return(out)
