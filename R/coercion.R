@@ -83,7 +83,6 @@ tif_as_corpus_df.default <- function(corpus) {
   }
 
   return(out)
-
 }
 
 #' @rdname tif_as
@@ -98,22 +97,18 @@ tif_as_corpus_df.character <- function(corpus) {
   }
   out <- data.frame(doc_id = doc_id, text = as.character(corpus),
                     stringsAsFactors = FALSE)
-
   return(out)
-
 }
 
 #' @rdname tif_as
 #' @export
 tif_as_corpus_df.data.frame <- function(corpus) {
-
   return(corpus)
-
 }
 
 #' @export
 #' @rdname tif_as
-tif_as_tokens_df <- function(corpus) {
+tif_as_tokens_df <- function(tokens) {
   UseMethod("tif_as_tokens_df")
 }
 
@@ -131,7 +126,6 @@ tif_as_tokens_df.default <- function(tokens) {
   }
 
   return(out)
-
 }
 
 #' @rdname tif_as
@@ -178,7 +172,6 @@ tif_as_tokens_list.default <- function(tokens) {
   }
 
   return(out)
-
 }
 
 #' @rdname tif_as
@@ -194,7 +187,3 @@ tif_as_tokens_list.data.frame <- function(tokens) {
   out <- split(tokens$token, tokens$doc_id)
   return(out)
 }
-
-
-
-

@@ -3,18 +3,54 @@
 \name{tif_as}
 \alias{tif_as}
 \alias{tif_as_corpus_character}
+\alias{tif_as_corpus_character.default}
+\alias{tif_as_corpus_character.character}
+\alias{tif_as_corpus_character.data.frame}
 \alias{tif_as_corpus_df}
+\alias{tif_as_corpus_df.default}
+\alias{tif_as_corpus_df.character}
+\alias{tif_as_corpus_df.data.frame}
 \alias{tif_as_tokens_df}
+\alias{tif_as_tokens_df.default}
+\alias{tif_as_tokens_df.list}
+\alias{tif_as_tokens_df.data.frame}
 \alias{tif_as_tokens_list}
-\title{Coerce Between Tif Object Specifications}
+\alias{tif_as_tokens_list.default}
+\alias{tif_as_tokens_list.list}
+\alias{tif_as_tokens_list.data.frame}
+\title{Coerce Between tif Object Specifications}
 \usage{
 tif_as_corpus_character(corpus)
 
+\method{tif_as_corpus_character}{default}(corpus)
+
+\method{tif_as_corpus_character}{character}(corpus)
+
+\method{tif_as_corpus_character}{data.frame}(corpus)
+
 tif_as_corpus_df(corpus)
+
+\method{tif_as_corpus_df}{default}(corpus)
+
+\method{tif_as_corpus_df}{character}(corpus)
+
+\method{tif_as_corpus_df}{data.frame}(corpus)
 
 tif_as_tokens_df(tokens)
 
+\method{tif_as_tokens_df}{default}(tokens)
+
+\method{tif_as_tokens_df}{list}(tokens)
+
+\method{tif_as_tokens_df}{data.frame}(tokens)
+
 tif_as_tokens_list(tokens)
+
+\method{tif_as_tokens_list}{default}(tokens)
+
+\method{tif_as_tokens_list}{list}(tokens)
+
+\method{tif_as_tokens_list}{data.frame}(tokens)
 }
 \arguments{
 \item{corpus}{valid tif corpus object to coerce}
