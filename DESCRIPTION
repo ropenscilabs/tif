@@ -5,7 +5,7 @@ Version: 0.3
 Authors@R: c(person("Taylor", "Arnold", role = c("aut", "cre"),
                      email = "taylor.arnold@acm.org"),
               person("Ken", "Benoit", role = "aut",
-                     email = "k.r.benoit@lse.ac.uk"),
+                     email = "k.r.benoit@lse.ac.uk"), 
               person("Lincoln", "Mullen", role = "aut",
                      email = "lmullen@gmu.edu "),
               person("Adam", "Obeng", role = "aut",
