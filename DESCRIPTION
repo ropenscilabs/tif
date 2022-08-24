@@ -1,7 +1,7 @@
 Package: tif
 Type: Package
 Title: Text Interchange Format
-Version: 0.3
+Version: 0.4
 Authors@R: c(person("Taylor", "Arnold", role = c("aut", "cre"),
                      email = "taylor.arnold@acm.org"),
               person("Ken", "Benoit", role = "aut",

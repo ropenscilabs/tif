@@ -1,6 +1,8 @@
 ## tif: Text Interchange Formats
 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/statsmaths/tif?branch=master&svg=true)](https://ci.appveyor.com/project/statsmaths/cleanNLP) [![Travis-CI Build Status](https://travis-ci.org/statsmaths/cleanNLP.svg?branch=master)](https://travis-ci.org/ropensci/tif)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/ropensci/tif/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/tif/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 This package describes and validates formats for storing
 common object arising in text analysis as native R objects.
