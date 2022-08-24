@@ -21,6 +21,7 @@ named entities.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://docs.ropensci.org/tif}
   \item \url{https://github.com/ropensci/tif}
   \item Report bugs at \url{http://github.com/ropensci/tif/issues}
 }
