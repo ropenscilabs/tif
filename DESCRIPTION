@@ -3,7 +3,7 @@ Type: Package
 Title: Text Interchange Format
 Version: 0.4
 Authors@R: c(person("Taylor", "Arnold", role = c("aut", "cre"),
-                     email = "taylor.arnold@acm.org"),
+                     email = "tarnold2@richmond.edu"),
               person("Ken", "Benoit", role = "aut",
                      email = "k.r.benoit@lse.ac.uk"),
               person("Lincoln", "Mullen", role = "aut",
