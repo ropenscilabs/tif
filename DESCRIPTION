@@ -12,7 +12,7 @@ Authors@R: c(person("Taylor", "Arnold", role = c("aut", "cre"),
                      email = "contact@adamobeng.com"),
               person("rOpenSci Text Workshop Participants (2017)",
                      role = "aut"))
-Maintainer: Taylor B. Arnold <taylor.arnold@acm.org>
+Maintainer: Taylor B. Arnold <tarnold2@richmond.edu>
 Description: Provides validation functions for common
     interchange formats for representing text data in R.
     Includes formats for corpus objects, document term
